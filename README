@@ -3,21 +3,20 @@
 ## 環境構築方法
 
 1. リポジトリをクローンします。
-    ```sh
-    git clone <リポジトリのURL>
-    cd <リポジトリ名>
-    ```
+```sh
+git clone <リポジトリのURL>
+cd <リポジトリ名>
+```
 
 2. 必要な依存関係をインストールします。
-    ```sh
-    go mod download
-    go mod tidy
-    ```
+```sh
+go mod tidy
+```
 
 3. Dockerを使用してデータベースをセットアップします。
-    ```sh
-    docker-compose up --build -d
-    ```
+```sh
+docker-compose up --build -d
+```
 
 ## ディレクトリ構成
 ```
