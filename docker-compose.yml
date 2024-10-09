@@ -30,5 +30,12 @@ services:
       - db_data:/var/lib/mysql
     restart: always
 
+  migrate:
+    image: migrate/migrate
+    volumes:
+      - ./db/migrations:/migrations
+    depends_on:
+      - db
+
 volumes:
   db_data:
