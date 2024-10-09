@@ -34,6 +34,14 @@ Sample Go Application
 ├── go.mod  # Goモジュール設定ファイル
 ├── go.sum  # Goモジュールの依存関係リスト
 ├── internal/
+│   ├── common/
+│   │   ├── authentication/  # 認証関連の共通機能
+│   │   ├── authorization/  # 認可関連の共通機能
+│   │   ├── cache/  # キャッシュ関連の共通機能
+│   │   ├── helper/  # ヘルパー関数
+│   │   ├── logging/  # ロギング関連の共通機能
+│   │   ├── notification/  # 通知関連の共通機能
+│   │   └── payment/  # 支払い関連の共通機能
 │   ├── infrastructure/
 │   │   └── router/
 │   │       └── router.go  # ルーティング設定
