@@ -10,16 +10,20 @@ services:
     environment:
       DB_HOST: db
       DB_PORT: 3306
-      DB_USER: root
-      DB_PASSWORD: root
-      DB_NAME: mydb
+      DB_USER: user
+      DB_PASSWORD: pass
+      DB_NAME: sampledb
+    volumes:
+      - .:/app
     restart: always
 
   db:
     image: mysql:8.0
     environment:
       MYSQL_ROOT_PASSWORD: 'rootpass'
-      MYSQL_DATABASE: mydb
+      MYSQL_DATABASE: sampledb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: pass
     ports:
       - "3306:3306"
     volumes:
