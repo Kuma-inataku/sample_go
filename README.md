@@ -20,21 +20,69 @@ docker-compose up --build -d
 
 ## ディレクトリ構成
 ```
-Sample Go Application
+/gin-api-sample                          # ルートディレクトリ
+│
 ├── .gitignore
+│
 ├── cmd/
 │   └── server/
 │       └── main.go  # アプリケーションのエントリーポイント
-├── db/
-│   └── migrations/
-│       ├── 000001_create_samples_table.down.sql  # サンプルテーブルを削除するSQLスクリプト
-│       └── 000001_create_samples_table.up.sql    # サンプルテーブルを作成するSQLスクリプト
-├── docker-compose.yml  # Docker Compose設定ファイル
-├── Dockerfile  # Dockerビルド設定ファイル
-├── go.mod  # Goモジュール設定ファイル
-├── go.sum  # Goモジュールの依存関係リスト
-├── internal/
-│   ├── common/
+│
+├── /src
+│   ├── /sample                     # サンプルモジュール
+│   │   ├── /sampleA                # sampleAに関するドメイン
+│   │   │   ├── /domain             # ドメイン層
+│   │   │   │   ├── /model          # エンティティ、値オブジェクト、集約
+│   │   │   │   ├── /repository     # ドメインリポジトリのインターフェース
+│   │   │   │   ├── /service        # ドメインサービス
+│   │   │   │   └── /event          # ドメインイベント
+│   │   │   ├── /application        # アプリケーション層
+│   │   │   │   ├── /service        # アプリケーションサービス
+│   │   │   │   └── /dto            # データ転送オブジェクト（DTO）
+│   │   │   ├── /infrastructure     # インフラ層
+│   │   │   │   ├── /repository     # ドメインリポジトリの実装
+│   │   │   │   ├── /api            # 外部APIとの連携
+│   │   │   │   └── /persistence    # 永続化層（DB接続やORM設定）
+│   │   │   └── /interface          # インターフェース層
+│   │   │       ├── /controller     # APIのエントリーポイント（REST/GraphQLなど）
+│   │   │       └── /viewmodel      # ビューモデル
+│   │   │
+│   │   ├── /sampleB                # sampleBに関するドメイン
+│   │   │   ├── /domain
+│   │   │   ├── /application
+│   │   │   ├── /infrastructure
+│   │   │   └── /interface
+│   │
+│   ├── /task-manager                # タスク管理モジュール
+│   │   ├── /worker                  # workerに関するドメイン
+│   │   │   ├── /domain
+│   │   │   ├── /application
+│   │   │   ├── /infrastructure
+│   │   │   └── /interface
+│   │   ├── /manager                 # managerに関するドメイン
+│   │   │   ├── /domain
+│   │   │   ├── /application
+│   │   │   ├── /infrastructure
+│   │   │   └── /interface
+│   │   ├── /task                    # taskに関するドメイン
+│   │   │   ├── /domain
+│   │   │   ├── /application
+│   │   │   ├── /infrastructure
+│   │   │   └── /interface
+│   │
+│   ├── /report-comment-fixer        # レポートコメント修正モジュール
+│   │   ├── /worker                  # workerに関するドメイン
+│   │   │   ├── /domain
+│   │   │   ├── /application
+│   │   │   ├── /infrastructure
+│   │   │   └── /interface
+│   │   ├── /manager                 # managerに関するドメイン
+│   │   │   ├── /domain
+│   │   │   ├── /application
+│   │   │   ├── /infrastructure
+│   │   │   └── /interface
+│   │
+│   ├── /shared                      # 共通モジュール（Shared）
 │   │   ├── authentication/  # 認証関連の共通機能
 │   │   ├── authorization/  # 認可関連の共通機能
 │   │   ├── cache/  # キャッシュ関連の共通機能
@@ -42,23 +90,22 @@ Sample Go Application
 │   │   ├── logging/  # ロギング関連の共通機能
 │   │   ├── notification/  # 通知関連の共通機能
 │   │   └── payment/  # 支払い関連の共通機能
-│   ├── infrastructure/
-│   │   └── router/
-│   │       └── router.go  # ルーティング設定
-│   ├── sample/
-│   │   ├── domain/
-│   │   │   └── model/
-│   │   │       └── sample.go  # サンプルドメインモデル
-│   │   ├── infrastructure/
-│   │   │   └── db/
-│   │   │       └── sample_mysql.go  # MySQLに関するインフラストラクチャコード
-│   │   ├── interface/
-│   │   │   └── handler/
-│   │   │       └── sample_handler.go  # HTTPハンドラー
-│   │   ├── tests/
-│   │   │   └── sample_test.go  # テストコード
-│   │   └── usecase/
-│   │       └── sample_usecase.go  # ユースケースロジック
-│   └── todo/  # 例。他のモジュールがこのレイヤーに入る
+│   │
+│   └── /infrastructure              # 全体に関わるインフラ層
+│       ├── /docker                  # Docker関連ファイル
+│       └── /database                # データベース関連（マイグレーションや設定）
+│
+├── /scripts                         # CI/CD用のスクリプト
+│
+├── /docs                            # ドキュメント
+│
+├── docker-compose.yml  # Docker Compose設定ファイル
+│
+├── Dockerfile  # Dockerビルド設定ファイル
+│
+├── go.mod  # Goモジュール設定ファイル
+│
+├── go.sum  # Goモジュールの依存関係リスト
+│
 └── README
 ```
