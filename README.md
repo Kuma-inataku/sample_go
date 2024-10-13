@@ -28,7 +28,7 @@ docker-compose up --build -d
 │   └── server/
 │       └── main.go  # アプリケーションのエントリーポイント
 │
-├── /src
+├── /modules
 │   ├── /sample                     # サンプルモジュール
 │   │   ├── /sampleA                # sampleAに関するドメイン
 │   │   │   ├── /domain             # ドメイン層
